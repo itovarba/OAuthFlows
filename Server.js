@@ -1,4 +1,9 @@
 const config = require('./config.js'); 
+const { Issuer } = require('openid-client');
+Issuer.discover('https://iberiaidentitylabs.force.com/customers') // => Promise
+  .then(function (iberiaIdIssuer) {
+    console.log('Discovered issuer %s %O', iberiaIdIssuer.issuer, iberiaIdIssuer.metadata);
+});
 
 var express = require('express'),
     http = require('http'), 

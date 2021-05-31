@@ -29,6 +29,7 @@
     "http": "~0.0.0",
     "morgan": "^1.10.0",
     "njwt": "^1.1.0",
+    "openid-client": "^4.7.4",
     "path": "^0.12.7",
     "qrcode-npm": "0.0.3",
     "request": "^2.88.2",
