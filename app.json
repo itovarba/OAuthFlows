@@ -9,6 +9,10 @@
     "CALLBACK_URL":{
       "description": "Set app callback URL",
       "value": "https://localhost:8081/oauthcallback.html"
+    },
+    "DOMAIN_NAME":{
+      "description": "Set app domain name",
+      "value": "localhost:8081"
     }
   }
 }
