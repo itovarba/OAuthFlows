@@ -10,9 +10,9 @@
       "description": "Set app callback URL",
       "value": "https://localhost:8081/oauthcallback.html"
     },
-    "DOMAIN_NAME":{
+    "PROXY_URL":{
       "description": "Set app domain name",
-      "value": "localhost:8081"
+      "value": "https://localhost:8081/proxy/"
     }
   }
 }

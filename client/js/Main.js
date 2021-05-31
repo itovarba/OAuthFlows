@@ -1,5 +1,5 @@
 var $apiEle = $("#apiCount"), 
-proxyURL = 'https://' + process.env.DOMAIN_NAME + '/proxy/' || 'https://localhost:8081/proxy/'; 
+proxyURL = process.env.PROXY_URL || 'https://localhost:8081/proxy/'; 
 
 var client = new forcetk.Client('', '', proxyURL);
  
