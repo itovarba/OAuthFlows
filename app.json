@@ -4,5 +4,11 @@
   "keywords": [
     "app-cloud"
   ],
-  "repository": "https://github.com/itovarba/OAuthFlows"
+  "repository": "https://github.com/itovarba/OAuthFlows",
+  "env": {
+    "CALLBACK_URL":{
+      "description": "Set app callback URL",
+      "value": "https://localhost:8081/oauthcallback.html"
+    }
+  }
 }
