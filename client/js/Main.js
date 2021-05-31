@@ -1,5 +1,7 @@
-var $apiEle = $("#apiCount"), 
-proxyURL = process.env.PROXY_URL || 'https://localhost:8081/proxy/'; 
+var $apiEle = $("#apiCount");
+
+// const proxyURL = process.env.PROXY_URL || 'https://localhost:8081/proxy/'; 
+const proxyURL = 'https://iberiaidentitylabs-oauthflows.herokuapp.com/proxy/'; 
 
 var client = new forcetk.Client('', '', proxyURL);
  

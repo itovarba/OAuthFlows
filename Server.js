@@ -1,3 +1,5 @@
+const config = require('./config.js'); 
+
 var express = require('express'),
     http = require('http'), 
     request = require('request'),
@@ -14,13 +16,13 @@ var express = require('express'),
 	jwt_consumer_key = '3MVG9SOw8KERNN0.3wkuxfmJzqFlYMaQ5lde3DhQrcgTnG3Y5WAc2e_d3L9hlWUS20aKLyF.1DFz.HoZbWaP9', 
 	consumer_secret='1DF1E5721AF6F7E45CABAA99CE0376DB9402B1EDB423056145278EBB5B715B9E',
 	jwt_aud = 'https://iberiaidentitylabs.force.com/customers', 
-	callbackURL = process.env.CALLBACK_URL || 'https://localhost:8081/oauthcallback.html';
+	callbackURL = config.CALLBACK_URL;
 
 	qrcode = require('qrcode-npm'),
     decode = require('salesforce-signed-request'),
 	canvas_consumer_secret='CB61ED01EA3693777FA4E403D6B775FCD94A9971FBCXXX89F25EA75383ACCCD9E69';
- 
-	app.set('view engine', 'ejs'); 
+	
+app.set('view engine', 'ejs'); 
 
 app.use(express.static(__dirname + '/client')); 
  
