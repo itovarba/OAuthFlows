@@ -188,6 +188,22 @@ app.get('/uAgent', function (req,res){
 } );
 
 /**
+*	 User Agent oAuth Flow
+*/
+app.get('/openId', function (req,res){  
+	var isSandbox = req.query.isSandbox;
+	var sfdcURL = 'https://iberiaidentitylabs.force.com/customers/services/oauth2/authorize' ;
+	if(isSandbox == 'true'){
+		sfdcURL = 'https://test.salesforce.com/services/oauth2/authorize' ;
+	}
+	
+	 request({ 	url : sfdcURL+'?client_id='+jwt_consumer_key+'&redirect_uri='+callbackURL+'&response_type=token',  
+				method:'GET' 
+			}).pipe(res); 
+	 
+} );
+
+/**
 *	 Username Password oAuth Flow
 */
 app.post('/uPwd', function (req,res){  
