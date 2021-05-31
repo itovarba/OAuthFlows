@@ -14,7 +14,7 @@ var express = require('express'),
 	jwt_consumer_key = '3MVG9SOw8KERNN0.3wkuxfmJzqFlYMaQ5lde3DhQrcgTnG3Y5WAc2e_d3L9hlWUS20aKLyF.1DFz.HoZbWaP9', 
 	consumer_secret='1DF1E5721AF6F7E45CABAA99CE0376DB9402B1EDB423056145278EBB5B715B9E',
 	jwt_aud = 'https://iberiaidentitylabs.force.com/customers', 
-	callbackURL='https://localhost:8081/oauthcallback.html';
+	callbackURL = process.env.CALLBACK_URL || "https://localhost:8081/oauthcallback.html";
 
 	qrcode = require('qrcode-npm'),
     decode = require('salesforce-signed-request'),
