@@ -77,7 +77,6 @@ function creatContactQuery(oauthToken,context,instanceUrl){
  *  Extract Access token from POST response and redirect to page Main
  */
 function extractAccessToken(err, remoteResponse, remoteBody,res){
-	debugger;
 	if (err) { 
 		return res.status(500).end('Error'); 
 	}
@@ -88,7 +87,12 @@ function extractAccessToken(err, remoteResponse, remoteBody,res){
 	if(sfdcResponse.access_token){				 
 		res.writeHead(302, {
 		  'Location': 'Main' ,
-		  'Set-Cookie': ['AccToken='+sfdcResponse.access_token,'APIVer='+apiVersion,'InstURL='+sfdcResponse.instance_url,'idURL='+sfdcResponse.id]
+		  'Set-Cookie': ['AccToken='+sfdcResponse.access_token, 
+		  	'RefToken='+sfdcResponse.refresh_token,
+			'IssuedAt='+sfdcResponse.issued_at,
+			'APIVer='+apiVersion,
+			'InstURL='+sfdcResponse.instance_url,
+			'idURL='+sfdcResponse.id]
 		});
 	}else{
 		res.write('Some error occurred. Make sure connected app is approved previously if its JWT flow, Username and Password is correct if its Password flow. ');
@@ -153,6 +157,7 @@ app.get('/webServer', function (req,res){
  * Step 2 Web Server Flow - Get token from Code
  */
 app.get('/webServerStep2', function (req,res){  
+	debugger;
 	var state = req.query.state;
 	var sfdcURL = 'https://iberiaidentitylabs.force.com/customers/services/oauth2/token' ;
 	if(state == 'webServerSandbox'){
