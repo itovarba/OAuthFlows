@@ -177,6 +177,7 @@ app.get('/webServerStep2', function (req,res){
 *	 User Agent oAuth Flow
 */
 app.get('/uAgent', function (req,res){  
+	debugger;
 	var isSandbox = req.query.isSandbox;
 	var sfdcURL = 'https://iberiaidentitylabs.force.com/customers/services/oauth2/authorize' ;
 	if(isSandbox == 'true'){
