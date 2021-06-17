@@ -1,3 +1,4 @@
+const { debug } = require('console');
 const config = require('./config.js'); 
 
 var express = require('express'),
@@ -76,6 +77,7 @@ function creatContactQuery(oauthToken,context,instanceUrl){
  *  Extract Access token from POST response and redirect to page Main
  */
 function extractAccessToken(err, remoteResponse, remoteBody,res){
+	debugger;
 	if (err) { 
 		return res.status(500).end('Error'); 
 	}
