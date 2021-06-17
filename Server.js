@@ -90,6 +90,7 @@ function extractAccessToken(err, remoteResponse, remoteBody,res){
 		  'Set-Cookie': ['AccToken='+sfdcResponse.access_token, 
 		  	'RefToken='+sfdcResponse.refresh_token,
 			'IssuedAt='+sfdcResponse.issued_at,
+			'IdToken='+sfdcResponse.id_token,
 			'APIVer='+apiVersion,
 			'InstURL='+sfdcResponse.instance_url,
 			'idURL='+sfdcResponse.id]
