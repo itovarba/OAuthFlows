@@ -144,11 +144,10 @@ app.get('/webServer', function (req,res){
 		state = 'webServerSandbox';
 	}
 	
-	 request({ 	url : sfdcURL+'?client_id='+
-				 jwt_consumer_key+'&redirect_uri='+
-				 callbackURL+'&response_type=code&state='+state,  
-				method:'GET' 
-			}).pipe(res);
+	var url = sfdcURL+'?client_id=' + jwt_consumer_key+'&redirect_uri=' + callbackURL + '&response_type=code&state=' + state;
+	console.log(url);
+	
+	request({url : url, method:'GET'}).pipe(res);
 	 
 } );
 
