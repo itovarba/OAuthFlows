@@ -1,4 +1,4 @@
-const { debug, Console } = require('console');
+const { debug } = require('console');
 const config = require('./config.js'); 
 
 var express = require('express'),
@@ -145,7 +145,8 @@ app.get('/webServer', function (req,res){
 	}
 	
 	var url = sfdcURL+'?client_id=' + jwt_consumer_key+'&redirect_uri=' + callbackURL + '&response_type=code&state=' + state;
-	Console.log(url);
+	console.log(url);
+	
 	request({url : url, method:'GET'}).pipe(res);
 	 
 } );
