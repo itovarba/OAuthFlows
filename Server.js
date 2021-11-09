@@ -17,6 +17,8 @@ var express = require('express'),
 	jwt_consumer_key = '3MVG9SOw8KERNN0.3wkuxfmJzqFlYMaQ5lde3DhQrcgTnG3Y5WAc2e_d3L9hlWUS20aKLyF.1DFz.HoZbWaP9', 
 	consumer_secret='1DF1E5721AF6F7E45CABAA99CE0376DB9402B1EDB423056145278EBB5B715B9E',
 	jwt_aud = 'https://iberiaidentitylabs.force.com/identity', 
+	jwt_consumer_keyHA = '3MVG9SOw8KERNN0.3wkuxfmJzqJ.9t_bvFmlzFnZqhu.LepsCwe.iYhn4wNDd7U9FO6fwYVrjBvrmrs0FsLmb', 
+	consumer_secretHA ='EF9EB279DA4F5958578621B31C27FF135F918B63EB4CAE7657EAC9E9B2BC33E3',
 	callbackURL = config.CALLBACK_URL;
 
 	qrcode = require('qrcode-npm'),
@@ -137,7 +139,7 @@ app.get('/jwt', function (req,res){
  */
 app.get('/webServer', function (req,res){  
 	var isSandbox = req.query.isSandbox;
-	var state = 'webServerProd';
+	var state = 'webServerStep2';
 	var sfdcURL = 'https://iberiaidentitylabs.force.com/identity/services/oauth2/authorize' ;
 	if(isSandbox == 'true'){
 		sfdcURL = 'https://test.salesforce.com/services/oauth2/authorize' ;
@@ -168,6 +170,51 @@ app.get('/webServerStep2', function (req,res){
 				 jwt_consumer_key+'&redirect_uri='+
 				 callbackURL+'&grant_type=authorization_code&code='+
 				 req.query.code+'&client_secret'+consumer_secret,  
+				method:'POST' 
+			},
+			function(err, remoteResponse, remoteBody) {
+				extractAccessToken(err, remoteResponse, remoteBody, res); 
+			} 
+		);
+	 
+} );
+
+/**
+ * Step 1 Web Server Flow (HA) - Get Code
+ */
+ app.get('/webServerHA', function (req,res){  
+	var isSandbox = req.query.isSandbox;
+	var state = 'webServerStep2HA';
+	var sfdcURL = 'https://iberiaidentitylabs.force.com/customers/services/oauth2/authorize' ;
+	if(isSandbox == 'true'){
+		sfdcURL = 'https://test.salesforce.com/services/oauth2/authorize' ;
+		state = 'webServerSandbox';
+	}
+	
+	var url = sfdcURL + '?client_id=' + jwt_consumer_keyHA + '&redirect_uri=' + callbackURL + '&response_type=code&state=' + state;
+	console.log(url);
+	
+	request({url : url, method:'GET'}).pipe(res);
+	 
+} );
+
+
+
+/**
+ * Step 2 Web Server Flow (HA) - Get token from Code
+ */
+app.get('/webServerStep2HA', function (req,res){  
+	debugger;
+	var state = req.query.state;
+	var sfdcURL = 'https://iberiaidentitylabs.force.com/customers/services/oauth2/token' ;
+	if(state == 'webServerSandbox'){
+		sfdcURL = 'https://test.salesforce.com/services/oauth2/token' ;
+	}
+	
+	 request({ 	url : sfdcURL+'?client_id='+
+				 jwt_consumer_keyHA+'&redirect_uri='+
+				 callbackURL+'&grant_type=authorization_code&code='+
+				 req.query.code+'&client_secret'+consumer_secretHA,  
 				method:'POST' 
 			},
 			function(err, remoteResponse, remoteBody) {

@@ -106,6 +106,26 @@
 		</p>
 	</div>
 
+	<div class="jumbotron" id="webServer">
+		<p>
+			<h2>Web Server Flow High Assurance </h2>
+			<ol class="smallFont">
+				<li> This page (Index.html) </li>
+				<li> Salesforce
+					<b>authorize</b> URL, response type
+					<b>code</b>
+				</li>
+				<li> oauthCallback.html</li>
+				<li> Salesforce
+					<b>token</b> URL, grant_type
+					<b>authorization_code</b>, POST request </li>
+				<li>Main.html (Salesforce Query operations) </li>
+			</ol>
+			<a id="prodBtnWSHA" role="button" style="margin-right:40px" class="btn btn-primary btn-lg">Production</a>
+			<a id="sandBtnWSHA" role="button" class="btn btn-primary btn-lg">Sandbox</a>
+		</p>
+	</div>
+
 
 	<div class="jumbotron" id="jwt">
 		<p>
@@ -237,6 +257,13 @@
 		});
 		$("#sandBtnWS").click(function () {
 			window.location = 'webServer?isSandbox=true';
+		});
+
+		$("#prodBtnWSHA").click(function () {
+			window.location = 'webServerHA?isSandbox=false';
+		});
+		$("#sandBtnWSHA").click(function () {
+			window.location = 'webServerHA?isSandbox=true';
 		});
 
 		$("#prodBtnR").click(function () {
