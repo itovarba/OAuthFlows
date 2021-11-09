@@ -139,7 +139,7 @@ app.get('/jwt', function (req,res){
  */
 app.get('/webServer', function (req,res){  
 	var isSandbox = req.query.isSandbox;
-	var state = 'webServerStep2';
+	var state = 'webServerProd';
 	var sfdcURL = 'https://iberiaidentitylabs.force.com/identity/services/oauth2/authorize' ;
 	if(isSandbox == 'true'){
 		sfdcURL = 'https://test.salesforce.com/services/oauth2/authorize' ;
@@ -184,7 +184,7 @@ app.get('/webServerStep2', function (req,res){
  */
  app.get('/webServerHA', function (req,res){  
 	var isSandbox = req.query.isSandbox;
-	var state = 'webServerStep2HA';
+	var state = 'webServerProdHA';
 	var sfdcURL = 'https://iberiaidentitylabs.force.com/customers/services/oauth2/authorize' ;
 	if(isSandbox == 'true'){
 		sfdcURL = 'https://test.salesforce.com/services/oauth2/authorize' ;

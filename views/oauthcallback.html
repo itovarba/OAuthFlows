@@ -53,7 +53,11 @@ if (window.location.hash) {
 	if(state.includes('webServer')){
 		//Its webserver flow so extract Token
 		$("#h2Message").html('I am Webserver Flow');
-		window.location = state+'?code='+access_code+'&state='+state;
+		if (state.includes('webServerProdHA')){
+			window.location = 'webServerStep2HA?code='+access_code+'&state='+state;
+		} else{
+			window.location = 'webServerStep2?code='+access_code+'&state='+state;
+		}
 	}else{
 		$.cookie("AccToken",access_code ) ;
 		window.location = 'Main';
