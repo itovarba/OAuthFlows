@@ -22,7 +22,7 @@ $('#Query-to-execute').keypress(function (e) {
   }
 });
 
-$('High-assurance-session').click(function (e){
+$('#High-assurance-session').click(function (e){
     window.location = 'webServerHA?isSandbox=false';
 });
 
