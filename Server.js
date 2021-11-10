@@ -214,7 +214,7 @@ app.get('/webServerStep2HA', function (req,res){
 	 request({ 	url : sfdcURL+'?client_id='+
 				 jwt_consumer_keyHA+'&redirect_uri='+
 				 callbackURL+'&grant_type=authorization_code&code='+
-				 req.query.code+'&client_secret'+consumer_secretHA,  
+				 req.query.code+'&client_secret='+consumer_secretHA,  
 				method:'POST' 
 			},
 			function(err, remoteResponse, remoteBody) {
