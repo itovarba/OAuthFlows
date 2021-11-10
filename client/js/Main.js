@@ -20,7 +20,11 @@ $('#Query-to-execute').keypress(function (e) {
   { 
 	executeQuery();
   }
-}); 
+});
+
+$('High-assurance-session').click(function (e){
+    window.location = 'webServerHA?isSandbox=false';
+});
 
 function getLoggedInUserInfo()
 {
