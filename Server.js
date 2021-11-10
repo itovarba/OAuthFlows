@@ -87,7 +87,7 @@ function extractAccessToken(err, remoteResponse, remoteBody, res, isHa) {
 
 	//success
 	if (sfdcResponse.access_token) {
-		if (!isHA) {
+		if (!isHa) {
 			res.writeHead(302, {
 				'Location': 'Main',
 				'Set-Cookie': ['AccToken=' + sfdcResponse.access_token,
